@@ -1,4 +1,4 @@
-package me.zhanshi123.entitycleaner.item;
+package me.zhanshi123.advancedcleaner.item;
 
 public interface CleanerTask {
     void call();

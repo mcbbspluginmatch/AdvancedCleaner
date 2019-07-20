@@ -1,6 +1,6 @@
-package me.zhanshi123.entitycleaner;
+package me.zhanshi123.advancedcleaner;
 
-import me.zhanshi123.entitycleaner.item.CountDownThread;
+import me.zhanshi123.advancedcleaner.item.CountDownThread;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 

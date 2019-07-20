@@ -1,4 +1,4 @@
-package me.zhanshi123.entitycleaner;
+package me.zhanshi123.advancedcleaner;
 
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;

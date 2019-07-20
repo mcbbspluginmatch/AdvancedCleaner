@@ -1,6 +1,6 @@
-package me.zhanshi123.entitycleaner.item;
+package me.zhanshi123.advancedcleaner.item;
 
-import me.zhanshi123.entitycleaner.Main;
+import me.zhanshi123.advancedcleaner.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Item;

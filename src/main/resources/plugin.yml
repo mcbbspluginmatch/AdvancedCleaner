@@ -1,5 +1,5 @@
-name: EntityCleaner
+name: AdvancedCleaner
 version: ${project.version}
-main: me.zhanshi123.entitycleaner.Main
+main: me.zhanshi123.advancedcleaner.Main
 api-version: 1.13
 authors: [Soldier]

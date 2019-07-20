@@ -1,6 +1,6 @@
-package me.zhanshi123.entitycleaner.item;
+package me.zhanshi123.advancedcleaner.item;
 
-import me.zhanshi123.entitycleaner.Main;
+import me.zhanshi123.advancedcleaner.Main;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
@@ -23,7 +23,6 @@ public class AnalyzeValueTask extends BukkitRunnable {
     @Override
     public void run() {
         Set<Item> cleanItem = new HashSet<>();
-
         data.entrySet().forEach(entry -> {
             Set<Item> itemSet = entry.getValue();
             itemSet.forEach(item -> {

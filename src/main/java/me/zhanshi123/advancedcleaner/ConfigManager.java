@@ -1,4 +1,4 @@
-package me.zhanshi123.entitycleaner;
+package me.zhanshi123.advancedcleaner;
 
 import com.google.common.base.Charsets;
 import org.bukkit.configuration.file.FileConfiguration;
