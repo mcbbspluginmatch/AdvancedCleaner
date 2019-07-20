@@ -1,0 +1,5 @@
+name: EntityCleaner
+version: ${project.version}
+main: me.zhanshi123.entitycleaner.Main
+api-version: 1.13
+authors: [Soldier]
