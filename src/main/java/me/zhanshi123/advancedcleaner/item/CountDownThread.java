@@ -16,7 +16,12 @@ public class CountDownThread extends BukkitRunnable {
         cleanerTaskMap.put(time, cleanerTask);
     }
 
+    public int getTime() {
+        return time;
+    }
+
     @Override
+
     public void run() {
         while (true) {
             CleanerTask cleanerTask = cleanerTaskMap.get(time);

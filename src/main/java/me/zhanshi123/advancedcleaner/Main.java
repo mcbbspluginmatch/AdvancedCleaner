@@ -1,6 +1,8 @@
 package me.zhanshi123.advancedcleaner;
 
 import me.zhanshi123.advancedcleaner.item.CountDownThread;
+import me.zhanshi123.advancedcleaner.item.resist.DropResistListener;
+import me.zhanshi123.advancedcleaner.item.resist.DropSkipManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -11,6 +13,7 @@ public final class Main extends JavaPlugin {
     private ConfigManager configManager;
     private Broadcaster broadcaster;
     private CountDownThread countDownThread;
+    private DropSkipManager dropSkipManager;
 
     public static Main getInstance() {
         return instance;
@@ -28,11 +31,16 @@ public final class Main extends JavaPlugin {
         return countDownThread;
     }
 
+    public DropSkipManager getDropSkipManager() {
+        return dropSkipManager;
+    }
+
     @Override
     public void onEnable() {
         instance = this;
         configManager = new ConfigManager();
         broadcaster = new Broadcaster();
+        dropSkipManager = new DropSkipManager();
         countDownThread = new CountDownThread();
         configManager.getNotificationSeconds().forEach(integer ->
                 countDownThread.addTask(integer, () -> broadcaster.broadcast(MessageFormat.format(configManager.getCountDownMessage(), String.valueOf(integer))))

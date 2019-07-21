@@ -55,4 +55,20 @@ public class ConfigManager {
     public String getCleanDoneMessage() {
         return config.getString("item.broadcast.cleanDone", "MESSAGE_NOT_FOUND").replace("&", "§");
     }
+
+    public boolean isDropResistEnabled() {
+        return config.getBoolean("item.dropResist.enable", true);
+    }
+
+    public String getDropResistConsult() {
+        return config.getString("item.dropResist.consult", "MESSAGE_NOT_FOUND").replace("&", "§");
+    }
+
+    public String getDropResistConfirmed() {
+        return config.getString("item.dropResist.confirmed", "MESSAGE_NOT_FOUND").replace("&", "§");
+    }
+
+    public int getDropResistValue() {
+        return config.getInt("item.dropResist.value", 10);
+    }
 }

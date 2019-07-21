@@ -1,6 +1,7 @@
 package me.zhanshi123.advancedcleaner.item;
 
 import me.zhanshi123.advancedcleaner.Main;
+import me.zhanshi123.advancedcleaner.item.resist.DropResistListener;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
@@ -48,6 +49,7 @@ public class AnalyzeValueTask extends BukkitRunnable {
                 Main.getInstance().getBroadcaster().broadcast(MessageFormat.format(Main.getInstance().getConfigManager().getCleanDoneMessage(), String.valueOf(cleanItem.size())));
             }
         }.runTask(Main.getInstance());
+        Main.getInstance().getDropSkipManager().clear();
     }
 
     public boolean isInBlackList(ItemStack itemStack) {
