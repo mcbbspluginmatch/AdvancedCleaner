@@ -1,11 +1,12 @@
 package me.zhanshi123.advancedcleaner.item;
 
 import me.zhanshi123.advancedcleaner.Main;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class CountDownThread implements Runnable {
+public class CountDownThread extends BukkitRunnable {
     private int time = Main.getInstance().getConfigManager().getInterval();
 
     private Map<Integer, CleanerTask> cleanerTaskMap = new HashMap<>();

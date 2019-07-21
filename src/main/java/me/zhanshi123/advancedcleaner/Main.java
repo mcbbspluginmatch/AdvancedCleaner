@@ -11,7 +11,6 @@ public final class Main extends JavaPlugin {
     private ConfigManager configManager;
     private Broadcaster broadcaster;
     private CountDownThread countDownThread;
-    private Thread countDown;
 
     public static Main getInstance() {
         return instance;
@@ -29,10 +28,6 @@ public final class Main extends JavaPlugin {
         return countDownThread;
     }
 
-    public Thread getCountDown() {
-        return countDown;
-    }
-
     @Override
     public void onEnable() {
         instance = this;
@@ -42,8 +37,7 @@ public final class Main extends JavaPlugin {
         configManager.getNotificationSeconds().forEach(integer ->
                 countDownThread.addTask(integer, () -> broadcaster.broadcast(MessageFormat.format(configManager.getCountDownMessage(), String.valueOf(integer))))
         );
-        countDown = new Thread(countDownThread);
-        countDown.start();
+        countDownThread.runTaskAsynchronously(Main.getInstance());
     }
 
     @Override
