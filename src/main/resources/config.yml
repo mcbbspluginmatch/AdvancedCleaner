@@ -46,3 +46,6 @@ item:
     #确认丢弃的消息
     value: 10
     #小于多少秒开始限制
+entity:
+  enable: true
+  interval: 900
