@@ -1,8 +1,6 @@
 package me.zhanshi123.advancedcleaner;
 
-import me.zhanshi123.advancedcleaner.Main;
 import me.zhanshi123.advancedcleaner.item.CleanerTask;
-import me.zhanshi123.advancedcleaner.item.CollectDropsTask;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;

@@ -13,6 +13,9 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+
+import static me.zhanshi123.advancedcleaner.Main.getInstance;
 
 public class ConfigManager {
     private FileConfiguration config = new YamlConfiguration();
@@ -24,7 +27,7 @@ public class ConfigManager {
 
     private void load() {
         try {
-            Main plugin = Main.getInstance();
+            Main plugin = getInstance();
             f = new File(plugin.getDataFolder(), "config.yml");
             if (!f.exists()) {
                 plugin.saveResource("config.yml", false);
@@ -38,7 +41,7 @@ public class ConfigManager {
                         int value = limit.getInt(name);
                         entityLimit.put(entityType, value);
                     } catch (Exception e) {
-                        Main.getInstance().getLogger().warning("Failed to load entity limit, entity type not found: " + name);
+                        getInstance().getLogger().warning("Failed to load entity limit, entity type not found: " + name);
                     }
 
                 });
@@ -67,7 +70,7 @@ public class ConfigManager {
     }
 
     public String getCountDownMessage() {
-        return config.getString("item.broadcast.countDown", "MESSAGE_NOT_FOUND").replace("&", "§");
+        return Objects.requireNonNull(config.getString("item.broadcast.countDown", "MESSAGE_NOT_FOUND")).replace("&", "§");
     }
 
     public int getInterval() {
@@ -75,7 +78,7 @@ public class ConfigManager {
     }
 
     public String getCleanDoneMessage() {
-        return config.getString("item.broadcast.cleanDone", "MESSAGE_NOT_FOUND").replace("&", "§");
+        return Objects.requireNonNull(config.getString("item.broadcast.cleanDone", "MESSAGE_NOT_FOUND")).replace("&", "§");
     }
 
     public boolean isDropResistEnabled() {
@@ -83,11 +86,11 @@ public class ConfigManager {
     }
 
     public String getDropResistConsult() {
-        return config.getString("item.dropResist.consult", "MESSAGE_NOT_FOUND").replace("&", "§");
+        return Objects.requireNonNull(config.getString("item.dropResist.consult", "MESSAGE_NOT_FOUND")).replace("&", "§");
     }
 
     public String getDropResistConfirmed() {
-        return config.getString("item.dropResist.confirmed", "MESSAGE_NOT_FOUND").replace("&", "§");
+        return Objects.requireNonNull(config.getString("item.dropResist.confirmed", "MESSAGE_NOT_FOUND")).replace("&", "§");
     }
 
     public int getDropResistValue() {

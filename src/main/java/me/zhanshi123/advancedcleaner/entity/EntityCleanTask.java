@@ -22,17 +22,17 @@ public class EntityCleanTask extends BukkitRunnable {
             types.put(type, list);
         });
         Map<EntityType, Integer> limit = Main.getInstance().getConfigManager().getEntityLimit();
-        types.entrySet().forEach(entry -> {
-            Integer value = limit.get(entry.getKey());
+        types.forEach((key, value1) -> {
+            Integer value = limit.get(key);
             if (value == null) {
                 return;
             }
-            if (entry.getValue().size() < value) {
+            if (value1.size() < value) {
                 return;
             }
-            int toClean = entry.getValue().size() - value;
+            int toClean = value1.size() - value;
             for (int i = 0; i < toClean; i++) {
-                entry.getValue().remove(i);
+                value1.get(i).remove();
             }
         });
     }

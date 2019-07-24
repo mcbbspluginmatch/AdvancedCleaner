@@ -14,7 +14,7 @@ public class DropSkipManager {
         Bukkit.getPluginManager().registerEvents(new DropResistListener(), Main.getInstance());
     }
 
-    public SkipState getState(Player player) {
+    SkipState getState(Player player) {
         String name = player.getName();
         Integer integer = data.get(name);
         if (integer == null) {
@@ -23,7 +23,7 @@ public class DropSkipManager {
         return SkipState.valueOf(integer);
     }
 
-    public void updateState(Player player, SkipState skipState) {
+    void updateState(Player player, SkipState skipState) {
         String name = player.getName();
         data.remove(name);
         data.put(name, skipState.getState());

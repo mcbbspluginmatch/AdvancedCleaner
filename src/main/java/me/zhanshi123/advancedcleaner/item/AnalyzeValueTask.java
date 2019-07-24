@@ -1,7 +1,6 @@
 package me.zhanshi123.advancedcleaner.item;
 
 import me.zhanshi123.advancedcleaner.Main;
-import me.zhanshi123.advancedcleaner.item.resist.DropResistListener;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
@@ -17,31 +16,28 @@ import java.util.Set;
 public class AnalyzeValueTask extends BukkitRunnable {
     private Map<World, Set<Item>> data;
 
-    public AnalyzeValueTask(Map<World, Set<Item>> data) {
+    AnalyzeValueTask(Map<World, Set<Item>> data) {
         this.data = data;
     }
 
     @Override
     public void run() {
         Set<Item> cleanItem = new HashSet<>();
-        data.entrySet().forEach(entry -> {
-            Set<Item> itemSet = entry.getValue();
-            itemSet.forEach(item -> {
-                ItemStack itemStack = item.getItemStack();
-                if (Main.getInstance().getConfigManager().isCheckValueEnabled()) {
-                    if (itemStack.hasItemMeta()) {
-                        return;
-                    }
-                    if (itemStack.getEnchantments().size() >= 3) {
-                        return;
-                    }
-                }
-                if (isInBlackList(itemStack)) {
+        data.forEach((key, itemSet) -> itemSet.forEach(item -> {
+            ItemStack itemStack = item.getItemStack();
+            if (Main.getInstance().getConfigManager().isCheckValueEnabled()) {
+                if (itemStack.hasItemMeta()) {
                     return;
                 }
-                cleanItem.add(item);
-            });
-        });
+                if (itemStack.getEnchantments().size() >= 3) {
+                    return;
+                }
+            }
+            if (isInBlackList(itemStack)) {
+                return;
+            }
+            cleanItem.add(item);
+        }));
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -52,7 +48,7 @@ public class AnalyzeValueTask extends BukkitRunnable {
         Main.getInstance().getDropSkipManager().clear();
     }
 
-    public boolean isInBlackList(ItemStack itemStack) {
+    private boolean isInBlackList(ItemStack itemStack) {
         List<String> blackList = Main.getInstance().getConfigManager().getBlackList();
         for (String black : blackList) {
             if (black.startsWith("@")) {
@@ -60,12 +56,10 @@ public class AnalyzeValueTask extends BukkitRunnable {
                 if (itemStack.getType().toString().contains(blackType)) {
                     return true;
                 }
-                continue;
             } else {
                 if (itemStack.getType().toString().equalsIgnoreCase(black)) {
                     return true;
                 }
-                continue;
             }
         }
         return false;

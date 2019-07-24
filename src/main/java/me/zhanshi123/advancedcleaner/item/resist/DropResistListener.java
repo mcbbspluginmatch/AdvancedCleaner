@@ -29,7 +29,6 @@ public class DropResistListener implements Listener {
         if (skipState == SkipState.WAIT_TO_CONFIRM) {
             Main.getInstance().getDropSkipManager().updateState(player, SkipState.CONFIRMED);
             player.sendMessage(Main.getInstance().getConfigManager().getDropResistConfirmed());
-            return;
         }
     }
 }
