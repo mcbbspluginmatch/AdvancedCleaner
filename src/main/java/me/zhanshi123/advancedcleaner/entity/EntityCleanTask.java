@@ -13,8 +13,18 @@ public class EntityCleanTask extends BukkitRunnable {
         Bukkit.getWorlds().forEach(world -> {
             for (Chunk chunk : world.getLoadedChunks()) {
                 List<Entity> entities = Arrays.asList(chunk.getEntities());
-                Map<Class<? extends Entity>, Set<? extends Entity>> types = new HashMap<>();
-                
+                Map<Class<? extends Entity>, Set<Entity>> types = new HashMap<>();
+                entities.forEach(entity -> {
+                    Class<? extends Entity> type = entity.getType().getEntityClass();
+                    Set<Entity> set = types.get(type);
+                    if (set == null) {
+                        set = new HashSet<>();
+                    }
+                    set.add(entity);
+                    types.remove(type);
+                    types.put(type, set);
+                });
+
             }
         });
     }

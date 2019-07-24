@@ -12,7 +12,7 @@ public class DropResistListener implements Listener {
         if (!Main.getInstance().getConfigManager().isDropResistEnabled()) {
             return;
         }
-        if (Main.getInstance().getCountDownThread().getTime() > Main.getInstance().getConfigManager().getDropResistValue()) {
+        if (Main.getInstance().getCountDownTask().getTime() > Main.getInstance().getConfigManager().getDropResistValue()) {
             return;
         }
         Player player = e.getPlayer();
