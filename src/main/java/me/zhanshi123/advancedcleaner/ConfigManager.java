@@ -33,9 +33,14 @@ public class ConfigManager {
             ConfigurationSection limit = config.getConfigurationSection("entity.limit");
             if (limit != null) {
                 limit.getKeys(false).forEach(name -> {
-                    EntityType entityType = EntityType.valueOf(name);
-                    int value = limit.getInt(name);
-                    entityLimit.put(entityType, value);
+                    try {
+                        EntityType entityType = EntityType.valueOf(name);
+                        int value = limit.getInt(name);
+                        entityLimit.put(entityType, value);
+                    } catch (Exception e) {
+                        Main.getInstance().getLogger().warning("Failed to load entity limit, entity type not found: " + name);
+                    }
+
                 });
             }
         } catch (Exception e) {

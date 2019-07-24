@@ -1,5 +1,6 @@
 package me.zhanshi123.advancedcleaner.entity;
 
+import me.zhanshi123.advancedcleaner.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -9,18 +10,31 @@ import java.util.*;
 
 public class EntityCleanTask extends BukkitRunnable {
     private static void accept(List<Entity> entities) {
-        Map<EntityType, Set<Entity>> types = new HashMap<>();
+        Map<EntityType, List<Entity>> types = new HashMap<>();
         entities.forEach(entity -> {
             EntityType type = entity.getType();
-            Set<Entity> set = types.get(type);
-            if (set == null) {
-                set = new HashSet<>();
+            List<Entity> list = types.get(type);
+            if (list == null) {
+                list = new ArrayList<>();
             }
-            set.add(entity);
+            list.add(entity);
             types.remove(type);
-            types.put(type, set);
+            types.put(type, list);
         });
-        //TODO clean mobs
+        Map<EntityType, Integer> limit = Main.getInstance().getConfigManager().getEntityLimit();
+        types.entrySet().forEach(entry -> {
+            Integer value = limit.get(entry.getKey());
+            if (value == null) {
+                return;
+            }
+            if (entry.getValue().size() < value) {
+                return;
+            }
+            int toClean = entry.getValue().size() - value;
+            for (int i = 0; i < toClean; i++) {
+                entry.getValue().remove(i);
+            }
+        });
     }
 
     @Override
