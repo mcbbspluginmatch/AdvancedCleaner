@@ -71,4 +71,16 @@ public class ConfigManager {
     public int getDropResistValue() {
         return config.getInt("item.dropResist.value", 10);
     }
+
+    public boolean isItemCleanEnabled() {
+        return config.getBoolean("item.enable", true);
+    }
+
+    public boolean isEntityCleanEnabled() {
+        return config.getBoolean("entity.enable", true);
+    }
+
+    public int getEntityCleanInterval() {
+        return config.getInt("entity.interval", 900);
+    }
 }

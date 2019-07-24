@@ -1,5 +1,6 @@
 package me.zhanshi123.advancedcleaner;
 
+import me.zhanshi123.advancedcleaner.entity.EntityCountDownTask;
 import me.zhanshi123.advancedcleaner.item.ItemCountDownTask;
 import me.zhanshi123.advancedcleaner.item.resist.DropSkipManager;
 import org.bukkit.Bukkit;
@@ -11,7 +12,8 @@ public final class Main extends JavaPlugin {
     private static Main instance;
     private ConfigManager configManager;
     private Broadcaster broadcaster;
-    private CountDownTask countDownTask;
+    private CountDownTask itemCountDownTask;
+    private CountDownTask entityCountDownTask;
     private DropSkipManager dropSkipManager;
 
     public static Main getInstance() {
@@ -27,7 +29,7 @@ public final class Main extends JavaPlugin {
     }
 
     public CountDownTask getCountDownTask() {
-        return countDownTask;
+        return itemCountDownTask;
     }
 
     public DropSkipManager getDropSkipManager() {
@@ -40,11 +42,16 @@ public final class Main extends JavaPlugin {
         configManager = new ConfigManager();
         broadcaster = new Broadcaster();
         dropSkipManager = new DropSkipManager();
-        countDownTask = new ItemCountDownTask(Main.getInstance().getConfigManager().getInterval());
+        itemCountDownTask = new ItemCountDownTask(Main.getInstance().getConfigManager().getInterval());
         configManager.getNotificationSeconds().forEach(integer ->
-                countDownTask.addTask(integer, () -> broadcaster.broadcast(MessageFormat.format(configManager.getCountDownMessage(), String.valueOf(integer))))
+                itemCountDownTask.addTask(integer, () -> broadcaster.broadcast(MessageFormat.format(configManager.getCountDownMessage(), String.valueOf(integer))))
         );
-        countDownTask.runTaskAsynchronously(Main.getInstance());
+        if (configManager.isItemCleanEnabled()) {
+            itemCountDownTask.runTaskAsynchronously(Main.getInstance());
+        }
+        if (configManager.isEntityCleanEnabled()) {
+            entityCountDownTask = new EntityCountDownTask(Main.getInstance().getConfigManager().getEntityCleanInterval());
+        }
     }
 
     @Override
