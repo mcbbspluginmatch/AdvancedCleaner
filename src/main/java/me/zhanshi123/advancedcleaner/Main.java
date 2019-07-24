@@ -46,15 +46,16 @@ public final class Main extends JavaPlugin {
         configManager = new ConfigManager();
         broadcaster = new Broadcaster();
         dropSkipManager = new DropSkipManager();
-        itemCountDownTask = new ItemCountDownTask(Main.getInstance().getConfigManager().getInterval());
-        configManager.getNotificationSeconds().forEach(integer ->
-                itemCountDownTask.addTask(integer, () -> broadcaster.broadcast(MessageFormat.format(configManager.getCountDownMessage(), String.valueOf(integer))))
-        );
         if (configManager.isItemCleanEnabled()) {
+            itemCountDownTask = new ItemCountDownTask(Main.getInstance().getConfigManager().getInterval());
+            configManager.getNotificationSeconds().forEach(integer ->
+                    itemCountDownTask.addTask(integer, () -> broadcaster.broadcast(MessageFormat.format(configManager.getCountDownMessage(), String.valueOf(integer))))
+            );
             itemCountDownTask.runTaskAsynchronously(Main.getInstance());
         }
         if (configManager.isEntityCleanEnabled()) {
             entityCountDownTask = new EntityCountDownTask(Main.getInstance().getConfigManager().getEntityCleanInterval());
+            entityCountDownTask.runTaskAsynchronously(Main.getInstance());
         }
     }
 
