@@ -28,12 +28,16 @@ public final class Main extends JavaPlugin {
         return broadcaster;
     }
 
-    public CountDownTask getCountDownTask() {
+    public DropSkipManager getDropSkipManager() {
+        return dropSkipManager;
+    }
+
+    public CountDownTask getItemCountDownTask() {
         return itemCountDownTask;
     }
 
-    public DropSkipManager getDropSkipManager() {
-        return dropSkipManager;
+    public CountDownTask getEntityCountDownTask() {
+        return entityCountDownTask;
     }
 
     @Override
