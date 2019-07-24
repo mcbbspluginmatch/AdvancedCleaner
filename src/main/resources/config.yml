@@ -52,7 +52,7 @@ entity:
   #是否开启实体清理
   interval: 300
   #检测间隔
-  rule:
+  limit:
     ZOMBIE: 8
     SKELETON: 8
     VILLAGER: 10

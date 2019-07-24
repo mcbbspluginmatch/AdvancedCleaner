@@ -1,14 +1,18 @@
 package me.zhanshi123.advancedcleaner;
 
 import com.google.common.base.Charsets;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.EntityType;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ConfigManager {
     private FileConfiguration config = new YamlConfiguration();
@@ -26,11 +30,24 @@ public class ConfigManager {
                 plugin.saveResource("config.yml", false);
             }
             config.load(new BufferedReader(new InputStreamReader(new FileInputStream(f), Charsets.UTF_8)));
+            ConfigurationSection limit = config.getConfigurationSection("entity.limit");
+            if (limit != null) {
+                limit.getKeys(false).forEach(name -> {
+                    EntityType entityType = EntityType.valueOf(name);
+                    int value = limit.getInt(name);
+                    entityLimit.put(entityType, value);
+                });
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    private Map<EntityType, Integer> entityLimit = new HashMap<>();
+
+    public Map<EntityType, Integer> getEntityLimit() {
+        return entityLimit;
+    }
 
     public boolean isCheckValueEnabled() {
         return config.getBoolean("item.checkValue.enabled", true);
