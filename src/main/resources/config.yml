@@ -52,3 +52,10 @@ entity:
   #是否开启实体清理
   interval: 900
   #检测间隔
+  rule:
+    ZOMBIE: 8
+    SKELETON: 8
+    VILLAGER: 10
+    PIGZOMBIE:
+  #每个区块中 各类型实体的最大数量，超过数量会清理超出限制的部分
+  #实体类型为枚举名
