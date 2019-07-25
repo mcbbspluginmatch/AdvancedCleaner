@@ -1,7 +1,7 @@
 # AdvancedCleaner
 
 ## 介绍
-AdvancedCleaner 可以帮助你高效解决服务器掉落物和实体多的难题    
+AdvancedCleaner 可以帮助你l高效解决服务器掉落物和实体多的难题    
 你只需安装插件至服务器，使用默认配置文件，即可对服务器进行一定的优化  
 ## 原理介绍
 本插件的掉落物清理和实体清理，均使用异步任务进行计时
@@ -80,5 +80,5 @@ entity:
   #实体类型为枚举名
 ````
 ## 下载
-下载和版本历史请前往 [http://dl.zhanshi123.me/AdvancedCleaner](http://dl.zhanshi123.me/#AdvancedCleaner) 进行下载  
+下载和版本历史请前往 [http://dl.zhanshi123.me/#AdvancedCleaner](http://dl.zhanshi123.me/#AdvancedCleaner) 进行下载  
 只支持1.13以上的版本
