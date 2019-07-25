@@ -81,4 +81,5 @@ entity:
 ````
 ## 下载
 下载和版本历史请前往 [http://dl.zhanshi123.me/#AdvancedCleaner](http://dl.zhanshi123.me/#AdvancedCleaner) 进行下载  
+源码链接: [https://gitee.com/Soldier233/AdvancedCleaner](https://gitee.com/Soldier233/AdvancedCleaner)  
 只支持1.13以上的版本
