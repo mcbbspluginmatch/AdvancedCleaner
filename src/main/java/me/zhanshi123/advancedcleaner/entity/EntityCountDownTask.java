@@ -11,6 +11,7 @@ public class EntityCountDownTask extends CountDownTask {
 
     @Override
     public void handle() {
+        // 至 0 后未取消该任务 —— 754503921
         new EntityCleanTask().runTask(Main.getInstance());
     }
 }

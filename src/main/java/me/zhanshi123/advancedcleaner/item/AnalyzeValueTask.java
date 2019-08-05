@@ -22,6 +22,8 @@ public class AnalyzeValueTask extends BukkitRunnable {
 
     @Override
     public void run() {
+        // 异步操作 Bukkit API
+        // 这点东西没必要单独异步拿出来算，过犹不及了 —— 754503921
         Set<Item> cleanItem = new HashSet<>();
         data.forEach((key, itemSet) -> itemSet.forEach(item -> {
             ItemStack itemStack = item.getItemStack();

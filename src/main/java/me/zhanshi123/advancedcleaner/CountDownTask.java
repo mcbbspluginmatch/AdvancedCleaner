@@ -15,6 +15,7 @@ public abstract class CountDownTask extends BukkitRunnable {
         this.interval = time;
     }
 
+    // 尽管没有在运行后对其进行调用，但仍然建议封闭对该 Map 的更改方法 —— 754503921
     private Map<Integer, CleanerTask> cleanerTaskMap = new HashMap<>();
 
     public void addTask(int time, CleanerTask cleanerTask) {
@@ -33,6 +34,7 @@ public abstract class CountDownTask extends BukkitRunnable {
             if (cleanerTask != null) {
                 cleanerTask.call();
             }
+            // 应使用 runTaskTimer 来进行类似的定时循环任务，而不是 sleep 使调度器线程未被利用 —— 754503921
             try {
                 Thread.sleep(1000L);
             } catch (InterruptedException e) {
