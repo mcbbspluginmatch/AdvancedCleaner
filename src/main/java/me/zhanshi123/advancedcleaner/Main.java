@@ -61,6 +61,7 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        // 有this不用，非要getInstance？——CustomStuff
         Bukkit.getScheduler().cancelTasks(Main.getInstance());
     }
 }
